@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Virtfolio News</title>
+  <!--Bootstrap 4 CSS-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!--Custom CSS-->
+  <link rel="stylesheet" href="css/style.css">
+  <!--Favicon-->
+  <link rel="shortcut icon" type="image/png" href="images/logo.png" />
+  <!--Extra Fonts-->
+  <link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Condiment' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+</head>
+
+<body>
+  <header>
+    <!--Top Navbar-->
+    <nav style="background-color: white;" class="navbar navbar-expand-lg navbar-light sticky-top">
+      <a id="navbar-brand" class="navbar-brand" href="index.html">
+        <img src="images/logo.png" width="50" height="50" class="d-inline-block align-top" alt="SE-logo">
+        <strong style="font-size: 40px; font-weight: 600; font-family: 'Condiment'; color: rgba(0, 0, 0, 0.75)">
+          Virtfolio</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links"
+        aria-controls="nav-links" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav-links">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="news.html">Market</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Assets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portfolio.html">My Account</a>
+          </li>
+        </ul>
+        <button id="nav-contact" class="btn btn-outline-dark my-2 my-sm-0" type="submit">Contact Us</button>
+      </div>
+    </nav>
+    <!--Head Banner-->
+    <div id="banner-jumbo-h" class="jumbotron">
+      <div class="container">
+        <h1 id="first-h" class="display-4 show" style="margin-bottom: 10px; font-family: 'Lato'; font-size: 40px;">
+          Fastest market data.</h1>
+        <h1 id="second-h" class="display-4 show" style="font-family: 'Lato'; font-size: 40px;">Latest financial news and
+          report.</h1>
+      </div>
+    </div>
+  </header>
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+      async>
+        {
+          "symbols": [
+            {
+              "proName": "BITSTAMP:BTCUSD",
+              "title": "Bitcoin"
+            },
+            {
+              "description": "EOS",
+              "proName": "BINANCE:EOSUSDT"
+            },
+            {
+              "description": "Ethereum",
+              "proName": "BINANCE:ETHUSDT"
+            },
+            {
+              "description": "Binance Coin",
+              "proName": "BINANCE:BNBUSDT"
+            },
+            {
+              "description": "XRP",
+              "proName": "BINANCE:XRPUSDT"
+            },
+            {
+              "description": "LTC",
+              "proName": "BINANCE:LTCUSDT"
+            },
+            {
+              "description": "IOTA",
+              "proName": "BINANCE:IOTAUSDT"
+            },
+            {
+              "description": "Qtum",
+              "proName": "BINANCE:QTUMUSDT"
+            }
+          ],
+            "showSymbolLogo": true,
+              "colorTheme": "light",
+                "isTransparent": false,
+                  "displayMode": "adaptive",
+                    "locale": "en"
+        }
+      </script>
+  </div>
+  <!-- TradingView Widget END -->
+  <!--Crypto Prices-->
+  <section id="crypto-aggre" class="container sect">
+    <h1 style="margin-bottom: 40px;">Real Time Data on Major Cryptocurrencies</h1>
+    <h6 id="timeDiv"></h6>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Last Price</th>
+          <th scope="col">Raw Change</th>
+          <th scope="col">Market Cap</th>
+        </tr>
+      </thead>
+      <tbody id="cryptoTable">
+      </tbody>
+    </table>
+  </section>
+  <!--Sector Performance-->
+  <section id="sector-aggre" class="container sect">
+    <h1 style="margin-bottom: 40px;">Sector Performance</h1>
+    <div id="sector-card">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Financials</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector1.png" alt="sec1"></p>
+              <div id="Financial" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Industrials</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector2.png" alt="sec1"></p>
+              <div id="Industrials" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Utilities</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector3.png" alt="sec1"></p>
+              <div id="Utilities" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Real-Estate</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector4.png" alt="sec1"></p>
+              <div id="Real Estate" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Technology</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector5.png" alt="sec1"></p>
+              <div id="Technology" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Discretionary</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector6.png" alt="sec1"></p>
+              <div id="Consumer Cyclical" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Staples</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector7.png" alt="sec1"></p>
+              <div id="Consumer Goods" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Materials</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector8.png" alt="sec1"></p>
+              <div id="Basic Materials" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Communication</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector9.png" alt="sec1"></p>
+              <div id="Communication Services" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Healthcare</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector10.png" alt="sec1"></p>
+              <div id="Healthcare" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Energy</h5>
+              <p class="card-text"><img width="128px" height="128px" src="images/sector11.png" alt="sec1"></p>
+              <div id="Energy" class="container flat-bg">0.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Gainers and Losers-->
+  <!-- <section id="gainer-loser" class="container sect">
+    <h1 style="margin-bottom: 40px;">Top Gainers and Losers</h1>
+    <div class="row">
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Symbol</th>
+              <th scope="col">Change %</th>
+              <th scope="col">Last Price</th>
+            </tr>
+          </thead>
+          <tbody id="gainers-tbody">
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Symbol</th>
+              <th scope="col">Change %</th>
+              <th scope="col">Last Price</th>
+            </tr>
+          </thead>
+          <tbody id="losers-tbody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>-->
+  <!--Individual Stocks-->
+  <section id="stock-search" class="sect">
+    <div class="container">
+      <h1 style="margin-bottom: 80px;">Detailed Stock Data and News</h1>
+    </div>
+    <div class="container text-center">
+      <h1 style="text-transform: none; font-size: 24px;" class="text-info">Ticker Symbol Lookup</h1>
+      <div style="margin-top: 0;" class="lead text-secondary">e.g. AAPL</div>
+      <div class="input-group mb-3">
+        <input id="ticker" type="text" class="form-control" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button id="search" class="btn btn-outline-info" type="button" id="button-addon2">Search</button>
+        </div>
+      </div>
+      <div id="error-zone" style="display: none;">
+        <div class="alert alert-danger" role="alert">We cannot find this symbol</div>
+      </div>
+      <div id="response-zone" style="display: none">
+        <div class="card" style="border: none;">
+          <div class="card-header" style="border: lightgrey 1px solid; border-radius: 5px;">
+            <div style="font-size: 28px;" class="row">
+              <div class="col-3 text-left">
+                <div id="key-symbol" style="font-size: 28px;" class="stock-symbol">Symbol</div>
+              </div>
+              <div id="key-p" class="col-3">$0.00</div>
+              <div id="key-cc" class="col-3">0.00</div>
+              <div id="key-cp" class="col-3">0.00%</div>
+              <div class="col-12 text-left">
+                <div id="key-name" style="font-size: 18px;" class="company-name">Company Name</div>
+              </div>
+            </div>
+          </div>
+          <div style="background-color: white; border: none; margin-top: 10px;" class="card-header">
+            <div style="font-size: 28px; color: #0081f2" class="text-left font-weight-bold">Key Stock Data</div>
+          </div>
+          <div id="key-data-body" style="font-size: 18px;" class="card-body">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="row">
+                  <div class="col-6 text-left">Open</div>
+                  <div id="key-op" class="col-6">0.00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 text-left">Previous Close</div>
+                  <div id="key-pc" class="col-6">0.00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 text-left">High</div>
+                  <div id="key-h" class="col-6">0.00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 text-left">Year High</div>
+                  <div id="key-yh" class="col-6">0.00</div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="row">
+                  <div class="col-6 text-left">Close</div>
+                  <div id="key-cl" class="col-6">0.00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 text-left">P/E Ratio</div>
+                  <div id="key-pe" class="col-6">0.00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 text-left">Low</div>
+                  <div id="key-l" class="col-6">0.00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 text-left">Year Low</div>
+                  <div id="key-yl" class="col-6">0.00</div>
+                </div>
+              </div>
+            </div>
+            <div style="background-color: grey; width: 100%; height: 3px; margin-top: 20px;"></div>
+          </div>
+          <div style="background-color: white; border: none; margin-top: 10px;" class="card-header">
+            <div style="font-size: 28px; color: #0081f2" class="text-left font-weight-bold">Recent News</div>
+          </div>
+          <div id="news-zone" class="card-body"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Footer-->
+  <footer id="foot-jumbo" class="jumbotron" style="padding-bottom: 20px;">
+    <div class="container">
+      <img id="foot-logo" src="images/logo.png" width="64px" height="64px" alt="foot-logo">
+      <h4>Virtfolio</h4>
+      <p class="lead" style="margin: 0 auto 40px;">Invest like a boss</p>
+      <p>2022© Virtfolio — All Rights Reserved</p>
+      <p class="lead" style="margin: 0; margin-top: 20px;"><em>Note: This is a mock project, not a real business.</em>
+      </p>
+    </div>
+  </footer>
+  <!--JavaScripts Go Here-->
+  <div id="javascripts" style="display: none;">
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!--Popper JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!--Bootstrap JS-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!--Local JS-->
+    <script src="js/utilities.js"></script>
+    <script src="js/news.js"></script>
+  </div>
+</body>
+
+</html>
