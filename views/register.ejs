@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+		<title>Register</title>
+        <!-- the form awesome library is used to add icons to our form -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <!-- include the stylesheet file -->
+        <link rel="stylesheet" href="/stylesheets/loginStyles.css">
+		<link href='https://fonts.googleapis.com/css?family=Condiment' rel='stylesheet'>
+	</head>
+	<body>
+		<div class="login">
+			<div class = "loginLogo">
+				<a id="navbar-brand" class="navbar-brand" href="/">
+					<img src="/images/logo.png" width="50" height="50" class="d-inline-block align-top" alt="SE-logo">
+					<strong style="font-size: 40px; font-weight: 600; text-decoration: none; font-family: 'Condiment'; color: rgba(0, 0, 0, 0.75)">
+					  Virtfolio</strong>
+				  </a>
+			</div>
+			<h1>Register
+				<i class="fas fa-user"></i>
+			</h1>
+			<div class="errorMessage">
+				<% if (error) { %>
+					<%= errorMsg %>
+				 <% } %>
+			</div>
+			<form action="/register" method="post">
+        <label for="firstName">
+					<!-- font awesome icon -->
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="firstName" placeholder="First Name" id="firstName" required>
+        <label for="lastName">
+					<!-- font awesome icon -->
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="lastName" placeholder="Last Name" id="lastName" required>
+				<label for="email">
+					<!-- font awesome icon -->
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="email" placeholder="Email" id="email" required>
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="password" name="password" placeholder="Password" id="password" required>
+        <label for="repeatedPassword">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="Password" name="repeatedPassword" placeholder="Confirm Password" id="repeatedPassword" required>
+        <label for="deposit">
+					<i class="fas fa-dollar-sign"></i>
+				</label>
+				<input type="number" name="deposit" placeholder="Initial Deposit ($)" id="deposit" required min = "100" max = "100000" value = "10000" step = "100">
+        <input type="submit" value="Register">
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Virtfolio</title>
+  <!--Bootstrap 4 CSS-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!--Custom CSS-->
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <!--Favicon-->
+  <link rel="shortcut icon" type="image/png" href="images/logo.png" />
+  <!--Extra Fonts-->
+  <link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Condiment' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+</head>
+
+<body>
+  <header>
+    <!--Top Navbar-->
+    <nav style="background-color: white;" class="navbar navbar-expand-lg navbar-light sticky-top">
+      <a id="navbar-brand" class="navbar-brand" href="/">
+        <img src="images/logo.png" width="50" height="50" class="d-inline-block align-top" alt="SE-logo">
+        <strong style="font-size: 40px; font-weight: 600; font-family: 'Condiment'; color: rgba(0, 0, 0, 0.75)">
+          Virtfolio</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links"
+        aria-controls="nav-links" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav-links">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="market">Market</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="assets">Assets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portfolio">My Account</a>
+          </li>
+        </ul>
+        <a href="logout"><button id="nav-contact" class="btn btn-outline-dark my-2 my-sm-0" type="submit">Log Out</button></a>
+      </div>
+    </nav>
+    <div id="user-page" style="margin-bottom: 120px;">
+      
+        <!--User Action Form-->
+        <% if (successMsg) { %>
+          <div class="alert alert-success">
+            <strong>Success! </strong> <%= successMsg %>
+          </div>
+				 <% } %>
+         <% if (errorMsg) { %>
+         <div class="alert alert-danger">
+          <strong>Error! </strong> <%= errorMsg %>
+        </div>
+        <% } %>
+        <section id="action-form" class="container sect">
+          <h1 style="margin-bottom: 60px;">Manage Portfolio</h1>
+          <div class="row">
+            <!--Nav Tabs-->
+            <div class="col-3" style="font-size: 20px;">
+              <div class="nav flex-column nav-pills" id="action-tabs" role="tablist" aria-orientation="vertical">
+                <a class="nav-link pill-profile active" id="deposit-tab" data-toggle="pill" href="#deposit-form" role="tab" aria-selected="true">Deposit</a>
+                <a class="nav-link pill-profile" id="withdraw-tab" data-toggle="pill" href="#withdraw-form" role="tab" aria-selected="false">Withdraw</a>
+                <a class="nav-link pill-profile" id="buy-tab" data-toggle="pill" href="#buy-form" role="tab" aria-selected="false">Buy</a>
+                <a class="nav-link pill-profile" id="sell-tab" data-toggle="pill" href="#sell-form" role="tab" aria-selected="false">Sell</a>
+              </div>
+            </div>
+            <div class="col-2"></div>
+            <!--Nav Content-->
+            <div class="col-7">
+              <div class="tab-content" id="action-forms">
+                <div class="tab-pane fade show active" id="deposit-form" role="tabpanel">
+                  <form id="deposit-form-real" method="POST" action = "/deposit">
+                    <div class="form-group">
+                      <label for="depositPassword">Password</label>
+                      <input type="password" class="form-control" id="depositPassword" name="depositPassword" placeholder="Password">
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <div class="form-group">
+                      <label for="deposit-amount">Transfer Amount</label>
+                      <input type="number" min="1" max="15000" step="0.01" class="form-control" id="deposit-amount" name="depositAmount" placeholder="$Amount" required="">
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <div class="custom-control custom-checkbox mb-3">
+                      <input type="checkbox" class="custom-control-input" id="deposit-c" required="">
+                      <label class="custom-control-label" for="deposit-c">Agree to Terms and Conditions</label>
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <button type="submit" class="btn btn-profile">Confirm Deposit</button>
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="withdraw-form" role="tabpanel">
+                  <form id="withdraw-form-real" method="POST" action="/withdraw">
+                    <div class="form-group">
+                      <label for="withdrawPassword">Password</label>
+                      <input type="password" class="form-control" id="withdrawPassword" name="withdrawPassword" placeholder="Password">
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <div class="form-group">
+                      <label for="withdraw-amount">Transfer Amount</label>
+                      <input type="number" min="1" step="0.01" class="form-control" id="withdraw-amount" name="withdrawAmount" placeholder="$Amount" required="">
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <div class="custom-control custom-checkbox mb-3">
+                      <input type="checkbox" class="custom-control-input" id="withdraw-c" required="">
+                      <label class="custom-control-label" for="withdraw-c">Agree to Terms and Conditions</label>
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <button type="submit" class="btn btn-profile">Confirm Withdraw</button>
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="buy-form" role="tabpanel">
+                  <form id="buy-form-real" method="POST">
+                    <div style="height: 10px;"></div>
+                    <div class="form-group">
+                      <label for="crypto-buy">Cryptocurrency Name</label>
+                      <select class="custom-select" id="crypto-choice" name = "cryptoChoice">
+                        <option value="bitcoin" selected>Bitcoin</option>
+                        <option value="eos">EOS</option>
+                        <option value="ethereum">Ethereum</option>
+                        <option value="binancecoin">Binance Coin</option>
+                        <option value="ripple">Ripple </option>
+                        <option value="litecoin">Litecoin </option>
+                        <option value="iota">MIOTA </option>
+                        <option value="qtum">Qtum </option>
+                      </select>
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <div class="form-group">
+                      <label for="buy-amount">Units/Shares</label>
+                      <input type="number" step="0.00000000000001"min="0" name = "units" class="form-control" id="buy-amount" placeholder="e.g. 1.0" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="sell-amount">Cost in Dollars</label>
+                        <input type="number" step=".01" name = "costInDollars" min="0" class="form-control" id="buy-dollars" placeholder="e.g. 1.0" required="">
+                      </div>
+                      <div class="errorMessage">
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <div style="height: 10px;"></div>
+                    <div style="display: inline-block; width: 5px;"></div>
+                    <button type="submit" class="btn btn-profile">Confirm Buy</button>
+                    <div style="height: 5px;"></div>
+                    <div style="margin-top: 20px; font-size: 20px; font-weight: bold;" class="text-right">Total: $<span id="calculated-buy-total">0.00</span></div>
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="sell-form" role="tabpanel">
+                  <form id="sell-form-real" method="POST" action = "/sell">
+                    <div class="form-group">
+                      <label for="sell-type">Cryptocurrency Name</label>
+                      <select class="custom-select" id="crypto-choice-sell" name = "cryptoChoiceSell">
+                        <option value="bitcoin" selected>Bitcoin</option>
+                        <option value="eos">EOS</option>
+                        <option value="ethereum">Ethereum</option>
+                        <option value="binancecoin">Binance Coin</option>
+                        <option value="ripple">Ripple </option>
+                        <option value="litecoin">Litecoin </option>
+                        <option value="iota">MIOTA </option>
+                        <option value="qtum">Qtum </option>
+                      </select>
+                      <div style="height: 10px;"></div>
+                      <div style="height: 10px;"></div>
+                      <div class="form-group">
+                        <label for="sell-amount">Units/Shares</label>
+                        <input type="number" step="0.00000000000001" min="0" class="form-control" id="sell-amount" name = "sellUnits" placeholder="e.g. 1.0" required="">
+                      </div>
+                    </div>
+                    
+                    <div style="height: 10px;"></div>
+                    <div class="form-group">
+                      <label for="sell-amount">Sell Price</label>
+                      <input type="number" min="0" step = "0.01" class="form-control" id="sell-dollars" placeholder="e.g. 1.0" required="" name="sellDollars">
+                    </div>
+                    
+                    <div style="height: 10px;"></div>
+                    <div style="height: 10px;"></div>
+                    <div style="display: inline-block; width: 5px;"></div>
+                    <button type="submit" class="btn btn-profile">Confirm Sell</button>
+                    <div style="height: 5px;"></div>
+                    <div style="margin-top: 20px; font-size: 20px; font-weight: bold;" class="text-right">Total: $<span id="sell-total">0.00</span></div>
+                  </form>
+                </div>
+              </div>
+              <div id="transaction-failure" style="margin-top: 20px; display: none;" class="alert alert-danger" role="alert">We cannot process your request, please verify inputs</div>
+              <div id="transaction-success" style="margin-top: 20px; display: none;" class="alert alert-success" role="alert">Transaction was successfully processed</div>
+            </div>
+          </div>
+          <div class="modal fade" id="close-model" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Close Account</h5>
+                </div>
+                <div class="modal-body">
+                  This action cannot be reversed. Please make sure to withdraw all your assets first.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button id="close-confirm" type="button" class="btn btn-danger">Proceed</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+  <!--Footer-->
+  <footer id="foot-jumbo" class="jumbotron" style="padding-bottom: 20px;">
+    <div class="container">
+      <img id="foot-logo" src="images/logo.png" width="64px" height="64px" alt="foot-logo">
+      <h4>Virtfolio</h4>
+      <p class="lead" style="margin: 0 auto 40px;">Invest like a boss</p>
+      <p>2022© Virtfolio — All Rights Reserved</p>
+      <p class="lead" style="margin: 0; margin-top: 20px;"><em>Note: This is a mock project, not a real business.</em>
+      </p>
+    </div>
+  </footer>
+  <!--JavaScripts Go Here-->
+  <div id="javascripts" style="display: none;">
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!--Popper JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!--Bootstrap JS-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!--Chart JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <!--Firebase JS-->
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <!--Local JS-->
+    <script src="javascripts/utilities.js"></script>
+    <script src="javascripts/portfolio.js"></script>
+  </div>
+</body>
+
+</html>
